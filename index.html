@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Valentine Prank</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(120deg, #ffd6e8, #ffffff, #dff4ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .container {
+    text-align: center;
+    max-width: 700px;
+    width: 100%;
+  }
+
+  .badge {
+    background: white;
+    padding: 8px 16px;
+    border-radius: 999px;
+    display: inline-block;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.1);
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 48px;
+    margin: 0;
+  }
+
+  h1 span {
+    color: #ff2f75;
+  }
+
+  .subtitle {
+    color: #666;
+    margin-top: 10px;
+  }
+
+  .toggle {
+    margin: 80px auto 0;
+    width: 180px;
+    height: 56px;
+    background: #ffe4ef;
+    border-radius: 40px;
+    position: relative;
+    padding: 6px;
+  }
+
+  button {
+    width: 50%;
+    height: 44px;
+    border: none;
+    border-radius: 40px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .yes {
+    background: #ff2f75;
+    color: white;
+  }
+
+  .no {
+    background: white;
+    color: #444;
+    position: absolute;
+    right: 6px;
+    top: 6px;
+  }
+
+  .message {
+    margin-top: 30px;
+    font-size: 18px;
+    color: #ff2f75;
+    min-height: 24px;
+  }
+
+  .tip {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    color: #999;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="badge">❤️ Zahra</div>
+
+  <h1>Will you be my <span>valentine</span>?</h1>
+  <div class="subtitle">Choose wisely.</div>
+
+  <div class="toggle" id="trap">
+    <button class="yes" id="yes">Yes</button>
+    <button class="no" id="no">No</button>
+  </div>
+
+  <div class="message" id="msg"></div>
+</div>
+
+
+
+<script>
+  const noBtn = document.getElementById("no");
+  const trap = document.getElementById("trap");
+  const msg = document.getElementById("msg");
+
+  function moveNo() {
+    const padding = 20;
+    const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+    const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    noBtn.style.position = "fixed";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    msg.textContent = "Oops! you missed it 😝";
+  }
+
+  // 🔑 LISTEN ON THE AREA, NOT THE BUTTON
+  trap.addEventListener("mouseenter", moveNo);
+  trap.addEventListener("mousemove", moveNo);   // desktop
+  trap.addEventListener("touchstart", moveNo);  // mobile
+
+ document.getElementById("yes").onclick = () => {
+  // hide both buttons container
+  document.getElementById("trap").style.display = "none";
+
+  // show final message
+  msg.textContent = "Hahaha Shukriya Muje Apnane k Lye ❤️";
+};
+
+</script>
+
+</body>
+</html>
